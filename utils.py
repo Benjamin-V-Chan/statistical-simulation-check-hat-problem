@@ -1,6 +1,12 @@
-# Import necessary modules
-# Define function save_to_csv(data: list, file_path: str)
-#   Save list data to CSV
-#
-# Define function load_from_csv(file_path: str) -> list
-#   Load CSV into a list and return
+import csv
+
+def save_to_csv(data: list, file_path: str):
+    with open(file_path, "w", newline="") as f:
+        writer = csv.writer(f)
+        for item in data:
+            writer.writerow([item])
+
+def load_from_csv(file_path: str) -> list:
+    with open(file_path, "r") as f:
+        reader = csv.reader(f)
+        return [int(row[0]) for row in reader]
