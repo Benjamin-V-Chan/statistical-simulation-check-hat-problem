@@ -4,6 +4,32 @@
 
 This project simulates the **Check-Hat Problem**, a well-known probability problem that examines the likelihood of individuals randomly picking their own hats from a collection. The statistical simulation helps analyze the expected number of correct matches and the probability distribution of the number of correct hat assignments.
 
+### **Mathematical Background**
+
+The problem can be modeled as a **derangement**, where a set of $\( n \)$ objects are arranged such that no object appears in its original position. The probability that no individual selects their own hat (i.e., a complete derangement) is given by:
+
+$$D_n = n! \sum_{k=0}^{n} \frac{(-1)^k}{k!}$$
+
+where $\( D_n \)$ represents the number of derangements of $\( n \)$ elements. The probability that exactly $\( k \)$ people receive their correct hats follows from the inclusion-exclusion principle:
+
+$$P(X = k) = \frac{\binom{n}{k} D_{n-k}}{n!}$$
+
+where:
+- $\( \binom{n}{k} \)$ represents the binomial coefficient for selecting $\( k \)$ people to receive their correct hat.
+- $\( D_{n-k} \)$ represents the number of ways to derange the remaining $\( n-k \)$ elements.
+
+Using **Stirling's approximation**, we derive an asymptotic probability that no one selects their own hat:
+
+$$\lim_{n \to \infty} P(X = 0) = \frac{1}{e} \approx 0.3679$$
+
+which suggests that as $\( n \)$ grows, the probability of a complete derangement stabilizes around 36.79%.
+
+Additionally, the expected number of correct assignments follows from linearity of expectation:
+
+$$E[X] = \sum_{i=1}^{n} P(i \text{ gets their own hat}) = \sum_{i=1}^{n} \frac{1}{n} = 1$$
+
+which states that, on average, **one person receives their correct hat, regardless of $\( n \)$**.
+
 ## Folder Structure
 ```
 project-root/
